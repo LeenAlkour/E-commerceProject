@@ -316,7 +316,7 @@ class _selvir_pageState extends State<selvir_page> {
                               padding: EdgeInsets.all(5.0),
                               child: Image(
                                 color: Color(0xc5f8f4f4),
-                                image: AssetImage('images/braclet.png'),
+                                image: AssetImage('images/bracelet.png'),
                                 width: 70.0,
                                 height: 70.0,
                               ),
