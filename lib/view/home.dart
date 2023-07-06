@@ -1,3 +1,4 @@
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 
 class home extends StatefulWidget {
@@ -14,10 +15,19 @@ class _homeState extends State<home> {
       child: Scaffold(
         backgroundColor: const Color(0xfff8f8f8),
         appBar: AppBar(
-            backgroundColor: const Color(0xfff8f8f8),
-            title: const Icon(
+            centerTitle: true,
+            leading: Icon(
               Icons.menu,
               color: Colors.black,
+            ),
+            backgroundColor: const Color(0xfff8f8f8),
+            title: Text(
+              "J & F",
+              style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.w300,
+                  color: Colors.black),
+              textAlign: TextAlign.right,
             ),
             elevation: 0.2,
             actions: const [
@@ -31,15 +41,15 @@ class _homeState extends State<home> {
                 bottom: Radius.circular(20),
               ),
             )),
-        // drawer: Drawer(
-        //     surfaceTintColor: Colors.red,
-        //     child: IconButton(
-        //       onPressed: () {
-        //         print("object");
-        //       },
-        //       color: Colors.cyan,
-        //       icon: const Icon(Icons.accessibility),
-        //     )),
+        drawer: Drawer(
+            surfaceTintColor: Colors.red,
+            child: IconButton(
+              onPressed: () {
+                print("object");
+              },
+              color: Colors.cyan,
+              icon: const Icon(Icons.accessibility),
+            )),
         body: Column(
           children: [
             // Container(
@@ -92,15 +102,37 @@ class _homeState extends State<home> {
                     children: [
                       Padding(
                         padding: EdgeInsets.all(18.0),
-                        child: CircleAvatar(
-                          backgroundColor: Color(0x56E7AC55),
-                          radius: 45,
-                          child: Icon(
-                            Icons.person,
-                            size: 60,
-                            color: Color(0x62d28991),
+                        child: AvatarGlow(
+                          glowColor: Color(0x62d28991),
+                          endRadius: 60.0,
+                          duration: Duration(milliseconds: 8000),
+                          repeat: true,
+                          showTwoGlows: true,
+                          repeatPauseDuration: Duration(milliseconds: 600),
+                          child: Material(
+                            // Replace this child with your own
+                            elevation: 8.0,
+                            shape: CircleBorder(),
+                            child: CircleAvatar(
+                              backgroundColor: Colors.white38,
+                              child: const Icon(
+                                Icons.person,
+                                size: 60,
+                                color: Color(0x62d28991),
+                              ),
+                              radius: 40.0,
+                            ),
                           ),
                         ),
+                        // CircleAvatar(
+                        //   backgroundColor: Color(0x56E7AC55),
+                        //   radius: 45,
+                        //   child: Icon(
+                        //     Icons.person,
+                        //     size: 60,
+                        //     color: Color(0x62d28991),
+                        //   ),
+                        // ),
                       ),
                       Padding(
                         padding: EdgeInsets.all(8.0),
@@ -194,13 +226,17 @@ class _homeState extends State<home> {
                       alignment: Alignment.bottomLeft,
                       width: double.infinity,
                       child: const Padding(
-                        padding: EdgeInsets.only(left: 170.0, bottom: 50),
-                        child: Text(
-                          "Selvir",
-                          style: TextStyle(
-                            color: Colors.white38,
-                            fontSize: 50,
-                          ),
+                        padding: EdgeInsets.only(left: 170.0, bottom: 50,top: 40),
+                        child: Column(
+                          children: [
+                            Text(
+                              "Selvir",
+                              style: TextStyle(
+                                color: Colors.white38,
+                                fontSize: 50,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
