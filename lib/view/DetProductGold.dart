@@ -5,17 +5,25 @@ import 'package:front_jewelry/view/gold.dart';
 import 'package:front_jewelry/view/SizerRingPage.dart';
 import 'package:get/get.dart';
 import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
-import 'package:get/get_core/src/get_main.dart';
+
+import '../controller/GoldController.dart';
 
 class DetProduct extends StatefulWidget {
-  const DetProduct({Key? key, required this.id}) : super(key: key);
-  final int id;
+  const DetProduct({Key? key}) : super(key: key);
+
   @override
   State<DetProduct> createState() => _DetProductState();
+
 }
 
 class _DetProductState extends State<DetProduct> {
+  final GoldController controller1 = Get.put(GoldController());
+
   @override
+  void initState() {
+    controller1.displayGoldItem(Get.arguments);
+    super.initState();
+  }
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: const Color(0xFF810023),
