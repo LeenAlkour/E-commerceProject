@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:front_jewelry/AppColor.dart';
 import 'package:front_jewelry/controller/GoldController.dart';
-import 'package:front_jewelry/view/DetProductGold.dart';
 import 'package:get/get.dart';
 
-class NewJewelryGold extends StatefulWidget {
-  const NewJewelryGold({Key? key}) : super(key: key);
+import 'DetProductSilver.dart';
+
+class NewJewelrySilver extends StatefulWidget {
+  const NewJewelrySilver({Key? key}) : super(key: key);
 
   @override
-  State<NewJewelryGold> createState() => _NewJewelryGoldState();
+
+  State<NewJewelrySilver> createState() => _NewJewelrySilverState();
 }
 
-class _NewJewelryGoldState extends State<NewJewelryGold> {
+class _NewJewelrySilverState extends State<NewJewelrySilver> {
   void initState() {
-    _goldController.getNewGold();
+    _goldController.getNewSilver();
     // TODO: implement initState
     super.initState();
   }
-
   final GoldController _goldController = Get.find();
+
   var color = AppColor().color1;
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class _NewJewelryGoldState extends State<NewJewelryGold> {
         title: const Padding(
           padding: EdgeInsets.all(8.0),
           child: Text(
-            "New Golden Jewelry  ",
+            "New Silver Jewelry ",
             style: TextStyle(
                 color: Colors.white70,
                 fontSize: 30,
@@ -39,7 +41,7 @@ class _NewJewelryGoldState extends State<NewJewelryGold> {
         ),
       ),
       body: Obx(() {
-        if (_goldController.goldNewList.isEmpty) {
+        if (_goldController.silverNewList.isEmpty) {
           return const Center(child: CircularProgressIndicator());
         } else {
           return GridView.builder(
@@ -48,12 +50,13 @@ class _NewJewelryGoldState extends State<NewJewelryGold> {
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
             ),
-            itemCount: _goldController.goldNewList.length,
+            itemCount: _goldController.silverNewList.length,
             itemBuilder: (BuildContext context, int index) {
-              final imageUrl = _goldController.goldNewList[index]['id'];
-              return GestureDetector(onTap: (){
-                Get.to(DetProductGold(),arguments: [_goldController.goldNewList[index]['id']]);
-              },
+              final imageUrl = _goldController.silverNewList[index]['id'];
+              return GestureDetector(
+                onTap: (){
+                  Get.to(DetProductSilver(),arguments: [_goldController.silverNewList[index]['id']]);
+                },
                 child: Padding(
                   padding: const EdgeInsets.only(top: 12.0, right: 5, left: 8),
                   child: Container(
@@ -75,7 +78,7 @@ class _NewJewelryGoldState extends State<NewJewelryGold> {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
-                        child: Align(alignment: Alignment.bottomLeft,child: Text("${_goldController.goldNewList[index]['final_price']} \$",style: TextStyle(fontSize: 20),)),
+                        child: Align(alignment: Alignment.bottomLeft,child: Text("${_goldController.silverNewList[index]['final_price']} \$",style: TextStyle(fontSize: 20),)),
                       ),),
                 ),
               );

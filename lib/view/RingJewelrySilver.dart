@@ -1,23 +1,26 @@
 import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_xlider/flutter_xlider.dart';
-import 'package:front_jewelry/view/DetProductGold.dart';
-import 'package:front_jewelry/view/gold.dart';
+import 'package:front_jewelry/view/DetProductSilver.dart';
+import 'package:front_jewelry/view/silver.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
 import '../AppColor.dart';
 import '../controller/GoldController.dart';
 
-class NecklacesJewelryGold extends StatefulWidget {
-  const NecklacesJewelryGold({Key? key}) : super(key: key);
+class RingJewelrySilver extends StatefulWidget {
+  const RingJewelrySilver({Key? key}) : super(key: key);
 
   @override
-  State<NecklacesJewelryGold> createState() => _NecklacesJewelryGoldState();
+  State<RingJewelrySilver> createState() => _RingJewelrySilverState();
 }
 
-class _NecklacesJewelryGoldState extends State<NecklacesJewelryGold> {
+class _RingJewelrySilverState extends State<RingJewelrySilver> {
   @override
   void initState() {
-    _goldController.getNecklacesGold();
+    _goldController.getRingsSilver();
     // TODO: implement initState
     super.initState();
   }
@@ -36,13 +39,13 @@ class _NecklacesJewelryGoldState extends State<NecklacesJewelryGold> {
               children: [
                 IconButton(
                     onPressed: () {
-                      Get.off(gold());
+                      Get.off(silver());
                     },
                     icon: Icon(Icons.arrow_back)),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    "Golden Necklaces",
+                    "Silver Rings",
                     style: TextStyle(
                         color: Colors.white70,
                         fontSize: 35,
@@ -79,7 +82,7 @@ class _NecklacesJewelryGoldState extends State<NecklacesJewelryGold> {
                   switch (value) {
                     case '0':
                       {
-                        _goldController.getNecklacesGold();
+                        _goldController.getRingsSilver();
                         // All Product;
                       }
                       break;
@@ -127,8 +130,7 @@ class _NecklacesJewelryGoldState extends State<NecklacesJewelryGold> {
                                             decoration: BoxDecoration(
                                                 border: Border.all(
                                               width: 3,
-                                              color: Color(
-                                                  _goldController.color.value),
+                                              color: Color(_goldController.color.value),
                                             )),
                                             height: 50,
                                             width: 110,
@@ -174,7 +176,7 @@ class _NecklacesJewelryGoldState extends State<NecklacesJewelryGold> {
                                       ),
                                       onTap: () {
                                         _goldController
-                                            .getNecklacesGoldCheaperThan(
+                                            .getRingsSilverCheaperThan(
                                                 _goldController
                                                     .numCheaper.value);
 
@@ -231,8 +233,7 @@ class _NecklacesJewelryGoldState extends State<NecklacesJewelryGold> {
                                             decoration: BoxDecoration(
                                                 border: Border.all(
                                               width: 3,
-                                              color: Color(
-                                                  _goldController.color.value),
+                                              color: Color(_goldController.color.value),
                                             )),
                                             height: 50,
                                             width: 110,
@@ -278,7 +279,7 @@ class _NecklacesJewelryGoldState extends State<NecklacesJewelryGold> {
                                       ),
                                       onTap: () {
                                         _goldController
-                                            .getNecklacesGoldGreaterThan(
+                                            .getRingsSilverGreaterThan(
                                                 _goldController
                                                     .numGreater.value);
 
@@ -295,7 +296,7 @@ class _NecklacesJewelryGoldState extends State<NecklacesJewelryGold> {
 
                     case '3':
                       {
-                        _goldController.getNecklacesGoldByDes();
+                        _goldController.getRingsSilverByDes();
 
                         //Sort ByDes;
                       }
@@ -303,7 +304,7 @@ class _NecklacesJewelryGoldState extends State<NecklacesJewelryGold> {
 
                     case '4':
                       {
-                        _goldController.getNecklacesGoldByAsc();
+                        _goldController.getRingsSilverByAsc();
 
                         //Sort ByAsc;
                       }
@@ -322,7 +323,7 @@ class _NecklacesJewelryGoldState extends State<NecklacesJewelryGold> {
                                   children: [
                                     Padding(
                                       padding:
-                                          const EdgeInsets.only(left: 20.0),
+                                      const EdgeInsets.only(left: 20.0),
                                       child: Center(
                                         child: Text(
                                           "Select two prices to display products with a price between these two prices.",
@@ -333,35 +334,27 @@ class _NecklacesJewelryGoldState extends State<NecklacesJewelryGold> {
                                         ),
                                       ),
                                     ),
+
                                     Obx(
-                                      () => FlutterSlider(
+                                          () => FlutterSlider(
                                         tooltip: FlutterSliderTooltip(
-                                          leftPrefix: Icon(
-                                            Icons.attach_money,
-                                            size: 19,
-                                            color: Colors.black45,
-                                          ),
-                                          rightSuffix: Icon(
-                                            Icons.attach_money,
-                                            size: 19,
-                                            color: Colors.black45,
-                                          ),
+                                          leftPrefix: Icon(Icons.attach_money, size: 19, color: Colors.black45,),
+                                          rightSuffix: Icon(Icons.attach_money, size: 19, color: Colors.black45,),
                                         ),
+
                                         jump: true,
-                                        values: [
-                                          _goldController.price1.value,
-                                          _goldController.price2.value
-                                        ],
+                                        values: [_goldController.price1.value, _goldController.price2.value],
                                         rangeSlider: true,
                                         max: 100000.0,
+
                                         min: 0.0,
-                                        onDragging:
-                                            (handlerIndex, price1, price2) {
+                                        onDragging: (handlerIndex, price1, price2) {
                                           _goldController.price1.value = price1;
                                           _goldController.price2.value = price2;
                                         },
                                       ),
                                     ),
+
                                     GestureDetector(
                                       child: Container(
                                         child: Center(
@@ -377,9 +370,7 @@ class _NecklacesJewelryGoldState extends State<NecklacesJewelryGold> {
                                         ),
                                       ),
                                       onTap: () {
-                                        _goldController.getNecklacesGoldBetween(
-                                            _goldController.price1.value,
-                                            _goldController.price2.value);
+                                        _goldController.getRingsSilverBetween(_goldController.price1.value,_goldController.price2.value);
 
                                         Navigator.pop(context);
                                       },
@@ -411,22 +402,20 @@ class _NecklacesJewelryGoldState extends State<NecklacesJewelryGold> {
         backgroundColor: Color(_goldController.color.value),
       ),
       body: Obx(() {
-        if (_goldController.goldNecklacesList.isEmpty) {
-          return const Center(child: CircularProgressIndicator());
+        if (_goldController.silverRingsList.isEmpty) {
+          return Center(child: CircularProgressIndicator());
         } else {
           return GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            shrinkWrap: true,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
             ),
-            itemCount: _goldController.goldNecklacesList.length,
+            itemCount: _goldController.silverRingsList.length,
             itemBuilder: (BuildContext context, int index) {
-              final imageUrl = _goldController.goldNecklacesList[index]['id'];
-              return GestureDetector(
-                onTap: (){
-                  Get.to(DetProductGold(),arguments:[_goldController.goldNecklacesList[index]['id']] );
-                },
+              final imageUrl = _goldController.silverRingsList[index]['id'];
+              return GestureDetector(onTap: (){Get.to(DetProductSilver(),arguments: [ _goldController.silverRingsList[index]['id']]);},
                 child: Padding(
                   padding: const EdgeInsets.only(top: 12.0, right: 5, left: 8),
                   child: Container(
@@ -448,8 +437,7 @@ class _NecklacesJewelryGoldState extends State<NecklacesJewelryGold> {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
-                        child: Align(alignment: Alignment.bottomLeft,child:
-                        Text("${_goldController.goldNecklacesList[index]['final_price']} \$",style: TextStyle(fontSize: 20),)),
+                        child: Align(alignment: Alignment.bottomLeft,child: Text("${_goldController.silverRingsList[index]['final_price']} \$",style: TextStyle(fontSize: 20),)),
                       ),),
                 ),
               );

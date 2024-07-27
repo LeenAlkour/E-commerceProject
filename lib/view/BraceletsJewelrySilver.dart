@@ -2,6 +2,7 @@ import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_xlider/flutter_xlider.dart';
+import 'package:front_jewelry/view/silver.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
@@ -9,20 +10,24 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import '../AppColor.dart';
 import '../controller/GoldController.dart';
 import 'DetProductGold.dart';
-import 'gold.dart';
+import 'DetProductSilver.dart';
 
-class BraceletsJewelryGold extends StatefulWidget {
-  const BraceletsJewelryGold({Key? key}) : super(key: key);
+class BraceletsJewelrySilver extends StatefulWidget {
+  const BraceletsJewelrySilver({Key? key}) : super(key: key);
 
   @override
-  State<BraceletsJewelryGold> createState() => _BraceletsJewelryGoldState();
+  State<BraceletsJewelrySilver> createState() => _BraceletsJewelrySilverState();
 }
 
-class _BraceletsJewelryGoldState extends State<BraceletsJewelryGold> {
+class _BraceletsJewelrySilverState extends State<BraceletsJewelrySilver> {
 
   @override
-  final GoldController _goldController = Get.find();
-
+  final GoldController _silverController = Get.find();
+  void initState() {
+    _silverController.getBraceletsSilver();
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,11 +40,11 @@ class _BraceletsJewelryGoldState extends State<BraceletsJewelryGold> {
           children: [
             Row(
               children: [
-                IconButton(onPressed: (){Get.off(gold());}, icon: Icon(Icons.arrow_back)),
+                IconButton(onPressed: (){Get.off(silver());}, icon: Icon(Icons.arrow_back)),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    "Golden Bracelets",
+                    "Silver Bracelets",
                     style: TextStyle(
                         color: Colors.white70,
                         fontSize: 35,
@@ -52,7 +57,7 @@ class _BraceletsJewelryGoldState extends State<BraceletsJewelryGold> {
               padding: const EdgeInsets.only(top: 8.0,left:4
               ),
               child: CustomRadioButton(
-                unSelectedBorderColor: Color(_goldController.color.value),
+                unSelectedBorderColor: Color(_silverController.color.value),
 
                 radius: 30,
                 elevation: 10,
@@ -66,12 +71,12 @@ class _BraceletsJewelryGoldState extends State<BraceletsJewelryGold> {
                 buttonTextStyle: ButtonTextStyle(
 
                     selectedColor: Colors.white,
-                    unSelectedColor: Color(_goldController.color.value),
+                    unSelectedColor: Color(_silverController.color.value),
                     textStyle: TextStyle(fontSize: 20)),
                 radioButtonValue: (value) {
                   switch(value) {
                     case '0': {
-                      _goldController.getBraceletsGold();
+                      _silverController.getBraceletsSilver();
                       // All Product;
                     }
                     break;
@@ -106,11 +111,11 @@ class _BraceletsJewelryGoldState extends State<BraceletsJewelryGold> {
                                     child: Container(
 
 
-                                      child: Obx(()=>Center(child: Text("${_goldController.numCheaper.value}", style: TextStyle(
+                                      child: Obx(()=>Center(child: Text("${_silverController.numCheaper.value}", style: TextStyle(
 
                                         fontSize: 25,
                                       ),))),
-                                      decoration: BoxDecoration(border: Border.all(width: 3,color: Color(_goldController.color.value),)),
+                                      decoration: BoxDecoration(border: Border.all(width: 3,color: Color(_silverController.color.value),)),
                                       height: 50,
                                       width: 110,
                                     ),
@@ -118,8 +123,8 @@ class _BraceletsJewelryGoldState extends State<BraceletsJewelryGold> {
                                   Column(
 
                                     children: [
-                                      IconButton(onPressed: (){_goldController.increase_num_cheaper();}, icon:Icon(opticalSize: 20.0,Icons.arrow_drop_up_sharp,size: 40,)),
-                                      IconButton(onPressed: (){_goldController.decrease_num_cheaper();}, icon:Icon(Icons.arrow_drop_down_sharp,size: 40)),
+                                      IconButton(onPressed: (){_silverController.increase_num_cheaper();}, icon:Icon(opticalSize: 20.0,Icons.arrow_drop_up_sharp,size: 40,)),
+                                      IconButton(onPressed: (){_silverController.decrease_num_cheaper();}, icon:Icon(Icons.arrow_drop_down_sharp,size: 40)),
                                     ],
                                   )
                                 ],
@@ -139,7 +144,7 @@ class _BraceletsJewelryGoldState extends State<BraceletsJewelryGold> {
 
                                 ),
                                 onTap: () {
-                                  _goldController.getBraceletsGoldCheaperThan(_goldController.numCheaper.value);
+                                  _silverController.getBraceletsSilverCheaperThan(_silverController.numCheaper.value);
 
                                   Navigator.pop(context);
                                 },
@@ -179,11 +184,11 @@ class _BraceletsJewelryGoldState extends State<BraceletsJewelryGold> {
                                     child: Container(
 
 
-                                      child: Obx(()=>Center(child: Text("${_goldController.numGreater.value}", style: TextStyle(
+                                      child: Obx(()=>Center(child: Text("${_silverController.numGreater.value}", style: TextStyle(
 
                                         fontSize: 25,
                                       ),))),
-                                      decoration: BoxDecoration(border: Border.all(width: 3,color: Color(_goldController.color.value),)),
+                                      decoration: BoxDecoration(border: Border.all(width: 3,color: Color(_silverController.color.value),)),
                                       height: 50,
                                       width: 110,
                                     ),
@@ -191,8 +196,8 @@ class _BraceletsJewelryGoldState extends State<BraceletsJewelryGold> {
                                   Column(
 
                                     children: [
-                                      IconButton(onPressed: (){_goldController.increase_num_greater();}, icon:Icon(opticalSize: 20.0,Icons.arrow_drop_up_sharp,size: 40,)),
-                                      IconButton(onPressed: (){_goldController.decrease_num_greater();}, icon:Icon(Icons.arrow_drop_down_sharp,size: 40)),
+                                      IconButton(onPressed: (){_silverController.increase_num_greater();}, icon:Icon(opticalSize: 20.0,Icons.arrow_drop_up_sharp,size: 40,)),
+                                      IconButton(onPressed: (){_silverController.decrease_num_greater();}, icon:Icon(Icons.arrow_drop_down_sharp,size: 40)),
                                     ],
                                   )
                                 ],
@@ -212,7 +217,7 @@ class _BraceletsJewelryGoldState extends State<BraceletsJewelryGold> {
 
                                 ),
                                 onTap: () {
-                                  _goldController.getBraceletsGoldGreaterThan(_goldController.numGreater.value);
+                                  _silverController.getBraceletsSilverGreaterThan(_silverController.numGreater.value);
 
                                   Navigator.pop(context);
                                 },
@@ -227,7 +232,7 @@ class _BraceletsJewelryGoldState extends State<BraceletsJewelryGold> {
                     break;
 
                     case '3': {
-                      _goldController.getBraceletsGoldByDes();
+                      _silverController.getBraceletsSilverByDes();
 
 
                       //Sort ByDes;
@@ -236,7 +241,7 @@ class _BraceletsJewelryGoldState extends State<BraceletsJewelryGold> {
 
                     case '4': {
 
-                      _goldController.getBraceletsGoldByAsc();
+                      _silverController.getBraceletsSilverByAsc();
 
                       //Sort ByAsc;
 
@@ -276,14 +281,14 @@ class _BraceletsJewelryGoldState extends State<BraceletsJewelryGold> {
                                       ),
 
                                       jump: true,
-                                      values: [_goldController.price1.value, _goldController.price2.value],
+                                      values: [_silverController.price1.value, _silverController.price2.value],
                                       rangeSlider: true,
                                       max: 100000.0,
 
                                       min: 0.0,
                                       onDragging: (handlerIndex, price1, price2) {
-                                        _goldController.price1.value = price1;
-                                        _goldController.price2.value = price2;
+                                        _silverController.price1.value = price1;
+                                        _silverController.price2.value = price2;
                                       },
                                     ),
                                   ),
@@ -303,7 +308,7 @@ class _BraceletsJewelryGoldState extends State<BraceletsJewelryGold> {
                                       ),
                                     ),
                                     onTap: () {
-                                      _goldController.getBraceletsGoldBetween(_goldController.price1.value,_goldController.price2.value);
+                                      _silverController.getBraceletsSilverBetween(_silverController.price1.value,_silverController.price2.value);
 
                                       Navigator.pop(context);
                                     },
@@ -318,11 +323,17 @@ class _BraceletsJewelryGoldState extends State<BraceletsJewelryGold> {
                     }
                     break;
 
+
+                    default: {
+
+                      //statements;
+                    }
+                    break;
                   }
 
                   print(value);
                 },
-                selectedColor: Color(_goldController.color.value),
+                selectedColor: Color(_silverController.color.value),
               ),
             ),
           ],
@@ -331,11 +342,11 @@ class _BraceletsJewelryGoldState extends State<BraceletsJewelryGold> {
 
 
         toolbarHeight: 115,
-        backgroundColor:  Color(_goldController.color.value),
+        backgroundColor:  Color(_silverController.color.value),
 
       ),
       body: Obx(() {
-        if (_goldController.goldBraceletsList.isEmpty) {
+        if (_silverController.silverBraceletsList.isEmpty) {
           return const Center(child: CircularProgressIndicator());
         } else {
           return GridView.builder(
@@ -344,12 +355,12 @@ class _BraceletsJewelryGoldState extends State<BraceletsJewelryGold> {
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
             ),
-            itemCount: _goldController.goldBraceletsList.length,
+            itemCount: _silverController.silverBraceletsList.length,
             itemBuilder: (BuildContext context, int index) {
-              final imageUrl = _goldController.goldBraceletsList[index]['id'];
+              final imageUrl = _silverController.silverBraceletsList[index]['id'];
               return GestureDetector(
                 onTap: (){
-                  Get.to(DetProductGold(),arguments:["${_goldController.goldBraceletsList[index]['id']}"] );
+                  Get.to(const DetProductSilver(),arguments:["${_silverController.silverBraceletsList[index]['id']}"] );
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(top: 12.0, right: 5, left: 8),
@@ -372,7 +383,7 @@ class _BraceletsJewelryGoldState extends State<BraceletsJewelryGold> {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
-                        child: Align(alignment: Alignment.bottomLeft,child: Text("${_goldController.goldBraceletsList[index]['final_price']} \$",style: TextStyle(fontSize: 20),)),
+                        child: Align(alignment: Alignment.bottomLeft,child: Text("${_silverController.silverBraceletsList[index]['final_price']} \$",style: TextStyle(fontSize: 20),)),
                       ),),
                 ),
               );

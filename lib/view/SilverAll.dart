@@ -1,36 +1,35 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:front_jewelry/AppColor.dart';
-import 'package:front_jewelry/controller/GoldController.dart';
-import 'package:front_jewelry/view/DetProductGold.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
-class NewJewelryGold extends StatefulWidget {
-  const NewJewelryGold({Key? key}) : super(key: key);
+import '../AppColor.dart';
+import '../controller/GoldController.dart';
+import 'DetProductSilver.dart';
+
+class SilverAll extends StatefulWidget {
+  const SilverAll({Key? key}) : super(key: key);
 
   @override
-  State<NewJewelryGold> createState() => _NewJewelryGoldState();
+  State<SilverAll> createState() => _SilverAllState();
 }
 
-class _NewJewelryGoldState extends State<NewJewelryGold> {
-  void initState() {
-    _goldController.getNewGold();
-    // TODO: implement initState
-    super.initState();
-  }
-
+class _SilverAllState extends State<SilverAll> {
+  @override
   final GoldController _goldController = Get.find();
-  var color = AppColor().color1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
         toolbarHeight: 100,
-        backgroundColor:Color(_goldController.color.value),
+        backgroundColor: Color(_goldController.color.value),
         title: const Padding(
           padding: EdgeInsets.all(8.0),
           child: Text(
-            "New Golden Jewelry  ",
+            "All Silver Jewelry",
             style: TextStyle(
                 color: Colors.white70,
                 fontSize: 30,
@@ -39,7 +38,7 @@ class _NewJewelryGoldState extends State<NewJewelryGold> {
         ),
       ),
       body: Obx(() {
-        if (_goldController.goldNewList.isEmpty) {
+        if (_goldController.silverAllList.isEmpty) {
           return const Center(child: CircularProgressIndicator());
         } else {
           return GridView.builder(
@@ -48,12 +47,10 @@ class _NewJewelryGoldState extends State<NewJewelryGold> {
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
             ),
-            itemCount: _goldController.goldNewList.length,
+            itemCount: _goldController.silverAllList.length,
             itemBuilder: (BuildContext context, int index) {
-              final imageUrl = _goldController.goldNewList[index]['id'];
-              return GestureDetector(onTap: (){
-                Get.to(DetProductGold(),arguments: [_goldController.goldNewList[index]['id']]);
-              },
+              final imageUrl = _goldController.silverAllList[index]['id'];
+              return GestureDetector(onTap: (){Get.to(DetProductSilver(),arguments: [_goldController.silverAllList[index]['id'] ]);},
                 child: Padding(
                   padding: const EdgeInsets.only(top: 12.0, right: 5, left: 8),
                   child: Container(
@@ -75,7 +72,7 @@ class _NewJewelryGoldState extends State<NewJewelryGold> {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
-                        child: Align(alignment: Alignment.bottomLeft,child: Text("${_goldController.goldNewList[index]['final_price']} \$",style: TextStyle(fontSize: 20),)),
+                        child: Align(alignment: Alignment.bottomLeft,child: Text("${_goldController.silverBraceletsList[index]['final_price']} \$",style: TextStyle(fontSize: 20),)),
                       ),),
                 ),
               );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:front_jewelry/AppBindings.dart';
-import 'package:front_jewelry/view/DetProduct.dart';
+import 'package:front_jewelry/view/DetProductGold.dart';
 import 'package:front_jewelry/controller/GoldController.dart';
 import 'package:front_jewelry/view/silver.dart';
 import 'package:front_jewelry/view/gold.dart';
